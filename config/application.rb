@@ -1,5 +1,6 @@
 require_relative "boot"
 
+#require_relative "../app/models/api.rb"
 require "rails"
 # Pick the frameworks you want:
 require "active_model/railtie"
@@ -14,11 +15,10 @@ require "action_view/railtie"
 require "action_cable/engine"
 # require "sprockets/railtie"
 require "rails/test_unit/railtie"
-
+require_relative "boot"
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
-require_relative "../app/models/api.rb"
 module UseItMusicBackend
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
