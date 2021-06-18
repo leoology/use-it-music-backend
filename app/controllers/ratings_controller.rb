@@ -1,6 +1,7 @@
 class RatingsController < ApplicationController
   before_action :set_rating, only: [:show, :update, :destroy]
 
+
   # GET /ratings
   def index
     @ratings = Rating.all
@@ -16,6 +17,11 @@ class RatingsController < ApplicationController
   # POST /ratings
   def create
     @rating = Rating.new(rating_params)
+    user= User.find_by_id(params["user_id"])
+    user.ratings<< @rating
+
+    #  byebug
+    
 
     if @rating.save
       render json: @rating, status: :created, location: @rating
@@ -46,6 +52,6 @@ class RatingsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def rating_params
-      params.require(:rating).permit(:score, :artist_id)
+      params.require(:rating).permit(:score, :artist_id, :user_id)
     end
 end
